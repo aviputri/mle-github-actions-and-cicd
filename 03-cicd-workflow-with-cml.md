@@ -34,7 +34,15 @@ flowchart TD
 - logs train and test RMSE to MLflow,
 - writes `metrics.txt` when run with `--cml-run`.
 
-Run it locally after downloading the data and configuring MLflow:
+For me, before running this, I need to install Libomp:
+
+```bash
+brew install libomp
+```
+
+What OpenMP is: It's a library that lets XGBoost train in parallel across your CPU cores, for example building trees with several threads at once. On macOS, XGBoost's compiled library (libxgboost.dylib) is linked against libomp.dylib. If that file is missing, XGBoost can't load at all.
+
+After it is installed, run it locally after downloading the data and configuring MLflow:
 
 ```bash
 export MLFLOW_TRACKING_URI="sqlite:///mlflow.db"
